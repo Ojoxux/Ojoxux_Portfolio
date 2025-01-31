@@ -2,20 +2,112 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background-dark: 222 84% 5%;
+    --background-darker: 222 84% 4%;
+    --background-lighter: 222 84% 8%;
+
+    --primary-50: 270 100% 98%;
+    --primary-100: 269 100% 95%;
+    --primary-200: 269 100% 94%;
+    --primary-300: 269 100% 90%;
+    --primary-400: 269 100% 85%;
+    --primary-500: 269 91% 65%;
+    --primary-600: 271 91% 65%;
+    --primary-700: 271 81% 56%;
+    --primary-800: 271 71% 47%;
+    --primary-900: 271 61% 38%;
+  }
+
+  body {
+    @apply bg-background-dark text-slate-100 font-mono antialiased;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .btn {
+    @apply px-4 py-2 rounded-md transition-colors duration-200
+           bg-primary-600 hover:bg-primary-500
+           text-white font-medium
+           focus:outline-none focus:ring-2 focus:ring-primary-400 focus:ring-offset-2
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .card {
+    @apply bg-background-dark/80 backdrop-blur-sm rounded-lg p-6 shadow-lg
+           hover:shadow-primary-500/20 transition-shadow duration-300;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r 
+           from-primary-400 to-primary-600;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideIn {
+    from {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+
+  @keyframes bounce {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 0.6s ease-out;
+  }
+  .animate-slideIn {
+    animation: slideIn 0.6s ease-out;
+  }
+  .animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  .animate-bounce {
+    animation: bounce 1s infinite;
+  }
+  .animate-spin {
+    animation: spin 1s linear infinite;
+  }
 }
