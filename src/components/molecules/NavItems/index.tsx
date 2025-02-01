@@ -2,7 +2,7 @@
 
 import { NavLink } from '@/components/atoms/NavLink'
 import { usePathname } from 'next/navigation'
-import { routes } from '@/utils/routes'
+import { routes } from '@/utils/constants/navigation'
 import { styles } from '@/utils/styles/constants'
 
 export const NavItems = () => {
