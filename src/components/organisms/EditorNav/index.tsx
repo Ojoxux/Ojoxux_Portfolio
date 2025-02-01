@@ -4,7 +4,7 @@ import { Logo } from '@/components/atoms/Logo'
 import { styles } from '@/utils/styles/constants'
 import { NavLink } from '@/components/atoms/NavLink'
 import { usePathname } from 'next/navigation'
-import { routes } from '@/utils/routes'
+import { routes } from '@/utils/constants/navigation'
 
 export const EditorNav = () => {
   const pathname = usePathname()
