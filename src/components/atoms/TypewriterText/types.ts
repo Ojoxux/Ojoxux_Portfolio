@@ -6,4 +6,5 @@ export interface TypewriterTextProps extends StyleProps {
   delay?: number
   className?: string
   onComplete?: () => void
+  showCursor?: boolean
 }
