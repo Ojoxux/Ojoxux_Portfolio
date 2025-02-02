@@ -27,20 +27,12 @@ export const useTypewriter = ({ text, speed = 50, delay = 0, onComplete }: UseTy
   }, [currentIndex, onComplete, speed, text])
 
   useEffect(() => {
-    let timeout: NodeJS.Timeout
-
-    if (delay > 0 && currentIndex === 0) {
-      timeout = setTimeout(() => {
-        setIsTyping(true)
-      }, delay)
-    } else {
+    const timeout = setTimeout(() => {
       startTyping()
-    }
+    }, delay)
 
-    return () => {
-      clearTimeout(timeout)
-    }
-  }, [currentIndex, delay, startTyping])
+    return () => clearTimeout(timeout)
+  }, [delay, startTyping])
 
   return { displayText, isTyping }
 }
