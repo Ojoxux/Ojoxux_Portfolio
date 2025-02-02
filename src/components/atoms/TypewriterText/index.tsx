@@ -9,6 +9,7 @@ export const TypewriterText = ({
   delay,
   className = '',
   onComplete,
+  showCursor = false,
 }: TypewriterTextProps) => {
   const { displayText, isTyping } = useTypewriter({
     text,
@@ -18,9 +19,9 @@ export const TypewriterText = ({
   })
 
   return (
-    <span className={className}>
+    <span className={className} style={{ whiteSpace: 'pre' }}>
       {displayText}
-      <span className={`${!isTyping ? 'animate-pulse' : 'opacity-0'}`}>_</span>
+      {(showCursor || isTyping) && <span className="animate-cursor-blink">_</span>}
     </span>
   )
 }
