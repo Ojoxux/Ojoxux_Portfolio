@@ -23,7 +23,7 @@ export const HomeHero = ({ className = '' }: HomeHeroProps) => {
         visible: { opacity: 1, y: 0 },
       }}
       transition={{ duration: 0.3 }}
-      className={`w-full h-[calc(100vh-48px)] flex flex-col justify-center px-12 md:px-24 lg:px-32 ${className}`}
+      className={`w-full flex flex-col justify-center ${className}`}
     >
       {/* グリーティング */}
       <div className="font-mono text-gray-200">
