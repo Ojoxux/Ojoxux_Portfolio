@@ -1,18 +1,18 @@
 export const routes = [
   {
     path: '/',
-    label: 'home',
+    label: '_home',
   },
   {
     path: '/about',
-    label: 'about-me',
+    label: '_about-me',
   },
   {
     path: '/projects',
-    label: 'projects',
+    label: '_projects',
   },
   {
     path: '/contact-me',
-    label: 'contact-me',
+    label: '_contact-me',
   },
 ]
