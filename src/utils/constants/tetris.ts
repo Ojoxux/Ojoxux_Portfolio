@@ -5,7 +5,9 @@ export const KEY_REPEAT_DELAY = 50
 export const SOFT_DROP_SPEED = 50
 export const ANIMATION_SPEED = 1000 / 60
 
-export const TETROMINOS = {
+export type TetrominoType = 'I' | 'O' | 'T' | 'L' | 'J' | 'S' | 'Z'
+
+export const TETROMINOS: Record<TetrominoType, { shape: number[][]; color: string }> = {
   I: {
     shape: [
       [0, 0, 0, 0],
@@ -63,8 +65,6 @@ export const TETROMINOS = {
     color: '#ff5555',
   },
 }
-
-export type TetrominoType = keyof typeof TETROMINOS
 
 // レベルごとの速度倍率を調整
 export const LEVEL_SPEED_MULTIPLIER = 0.8 // より急激な速度上昇に変更
