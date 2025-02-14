@@ -1,15 +1,20 @@
 import { EditorLayout } from '@/components/templates/EditorLayout'
-import { styles } from '@/utils/styles/constants'
+import { HomeHero } from '@/components/organisms/HomeHero'
+import { TetrisGame } from '@/components/molecules/TetrisGame'
 
 export default function Home() {
   return (
     <EditorLayout>
-      <div className={styles.section}>
-        <h1 className={styles.heading1}>Welcome to my portfolio</h1>
-        <p className={styles.paragraph}>
-          I&apos;m a software engineer passionate about building beautiful and functional
-          applications.
-        </p>
+      <div className="grid grid-cols-2 gap-32 min-h-screen">
+        {/* 左側のHomeHero */}
+        <div className="flex items-center translate-y-[-5%]">
+          <HomeHero className="px-12" />
+        </div>
+
+        {/* 右側のTetrisGame */}
+        <div className="relative flex items-center justify-center translate-y-[3%]">
+          <TetrisGame className="-ml-[15%]" />
+        </div>
       </div>
     </EditorLayout>
   )
