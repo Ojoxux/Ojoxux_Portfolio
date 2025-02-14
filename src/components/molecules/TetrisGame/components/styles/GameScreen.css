@@ -1,0 +1,66 @@
+@keyframes genieOpen {
+  0% {
+    transform: perspective(1200px) rotateX(75deg) scale(0.1) skewX(0deg);
+    clip-path: polygon(100% 100%, 100% 100%, 100% 100%, 100% 100%);
+  }
+  20% {
+    transform: perspective(1200px) rotateX(60deg) scale(0.3) skewX(10deg);
+    clip-path: polygon(80% 80%, 100% 80%, 100% 100%, 60% 100%);
+  }
+  40% {
+    transform: perspective(1200px) rotateX(40deg) scale(0.5) skewX(-10deg);
+    clip-path: polygon(70% 60%, 100% 60%, 100% 100%, 40% 100%);
+  }
+  60% {
+    transform: perspective(1200px) rotateX(20deg) scale(0.7) skewX(0deg);
+    clip-path: polygon(50% 40%, 100% 40%, 100% 100%, 20% 100%);
+  }
+  80% {
+    transform: perspective(1200px) rotateX(5deg) scale(0.9) skewX(0deg);
+    clip-path: polygon(30% 20%, 100% 20%, 100% 100%, 0 100%);
+  }
+  100% {
+    transform: perspective(1200px) rotateX(0deg) scale(1) skewX(0deg);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+}
+
+@keyframes genieClose {
+  0% {
+    transform: perspective(1200px) rotateX(0deg) scale(1) skewX(0deg);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+  20% {
+    transform: perspective(1200px) rotateX(5deg) scale(0.9) skewX(0deg);
+    clip-path: polygon(30% 20%, 100% 20%, 100% 100%, 0 100%);
+  }
+  40% {
+    transform: perspective(1200px) rotateX(20deg) scale(0.7) skewX(0deg);
+    clip-path: polygon(50% 40%, 100% 40%, 100% 100%, 20% 100%);
+  }
+  60% {
+    transform: perspective(1200px) rotateX(40deg) scale(0.5) skewX(-10deg);
+    clip-path: polygon(70% 60%, 100% 60%, 100% 100%, 40% 100%);
+  }
+  80% {
+    transform: perspective(1200px) rotateX(60deg) scale(0.3) skewX(10deg);
+    clip-path: polygon(80% 80%, 100% 80%, 100% 100%, 60% 100%);
+  }
+  100% {
+    transform: perspective(1200px) rotateX(75deg) scale(0.1) skewX(0deg);
+    clip-path: polygon(100% 100%, 100% 100%, 100% 100%, 100% 100%);
+  }
+}
+
+.genie-open,
+.genie-close {
+  transform-origin: bottom right;
+}
+
+.genie-open {
+  animation: genieOpen 0.6s ease-out forwards;
+}
+
+.genie-close {
+  animation: genieClose 0.6s ease-in forwards;
+}
