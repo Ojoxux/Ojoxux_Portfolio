@@ -1,55 +1,105 @@
 import React from 'react'
-import Avatar from '@/components/atoms/Avatar'
-import AboutSection from '@/components/molecules/AboutSection'
 import { AboutMeContentProps } from './types'
 
-const AboutMeContent: React.FC<AboutMeContentProps> = () => {
+const AboutMeContent: React.FC<AboutMeContentProps> = ({
+  currentFile,
+  openFiles,
+  fileContent,
+  onFileSelect,
+  onCloseFile,
+}) => {
+  if (!fileContent) return null
+
+  const lines = fileContent.content.split('\n')
+
   return (
-    <div className="max-w-4xl mx-auto p-8 bg-[#282a36] rounded-xl shadow-lg">
-      <div className="flex flex-col items-center mb-8">
-        <Avatar src="/profile.jpg" alt="プロフィール画像" size={120} />
-        <h1 className="mt-4 text-4xl font-bold text-[#f8f8f2]">[あなたの名前]</h1>
+    <div className="h-full flex flex-col">
+      {/* タブバー */}
+      <div className="h-10 bg-[#21222c] flex items-center border-b border-[#44475a]">
+        <div className="flex h-full">
+          {openFiles.map(path => {
+            const isActive = path === currentFile
+            const fileName = path.split('/').pop()
+
+            return (
+              <div
+                key={path}
+                onClick={() => onFileSelect(path)}
+                className={`
+                  h-full px-4 flex items-center gap-2 cursor-pointer group border-r border-[#44475a]
+                  ${isActive ? 'bg-[#282a36] text-[#f8f8f2]' : 'bg-[#21222c] text-[#6272a4] hover:bg-[#282a36]/50'}
+                `}
+              >
+                <span className="text-[#ff79c6]">ts</span>
+                <span>{fileName}</span>
+                <button
+                  onClick={e => {
+                    e.stopPropagation()
+                    onCloseFile(path)
+                  }}
+                  className="opacity-0 group-hover:opacity-100 hover:text-[#ff5555]"
+                >
+                  ×
+                </button>
+              </div>
+            )
+          })}
+        </div>
       </div>
-      <AboutSection title="自己紹介">
-        <p>
-          こんにちは、[あなたの名前]です。フルスタックエンジニアとして、最先端の技術を駆使し、ユーザーに最適な体験を提供することに情熱を注いでいます。
-        </p>
-      </AboutSection>
-      <AboutSection title="スキルと技術">
-        <ul className="list-disc list-inside">
-          <li>JavaScript / TypeScript</li>
-          <li>React / Next.js</li>
-          <li>Node.js / Express</li>
-          <li>HTML / CSS (Tailwind CSS)</li>
-        </ul>
-      </AboutSection>
-      <AboutSection title="経歴・実績">
-        <p>
-          これまでに[企業名]や[プロジェクト名]で数多くのプロジェクトに携わり、業界内で高い評価を受けてきました。
-        </p>
-      </AboutSection>
-      <AboutSection title="興味・趣味">
-        <p>プログラミング以外では、アウトドア活動や音楽鑑賞、読書などを楽しんでいます。</p>
-      </AboutSection>
-      <AboutSection title="連絡先情報">
-        <p>
-          Email:{' '}
-          <a href="mailto:example@example.com" className="text-[#50fa7b] underline">
-            example@example.com
-          </a>
-        </p>
-        <p>
-          LinkedIn:{' '}
-          <a
-            href="https://www.linkedin.com/in/your-linkedin"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[#50fa7b] underline"
-          >
-            your-linkedin
-          </a>
-        </p>
-      </AboutSection>
+
+      {/* エディタ本体 */}
+      <div className="flex-1 overflow-auto">
+        <div className="flex">
+          {/* 行番号 */}
+          <div className="w-[50px] flex-shrink-0 bg-[#282a36] text-[#6272a4] text-right pr-4 select-none border-r border-[#44475a]">
+            {lines.map((_, i) => (
+              <div key={i} className="h-6 text-sm leading-6">
+                {String(i + 1).padStart(2, '0')}
+              </div>
+            ))}
+          </div>
+
+          {/* コード */}
+          <div className="flex-1 relative">
+            {/* インデントガイド */}
+            <div
+              className="absolute top-0 left-0 h-full w-px bg-[#44475a]/30"
+              style={{ left: '16px' }}
+            />
+            <div
+              className="absolute top-0 left-0 h-full w-px bg-[#44475a]/30"
+              style={{ left: '32px' }}
+            />
+
+            {/* コードコンテンツ */}
+            <pre className="p-0 m-0">
+              <code className="block px-4 text-[#f8f8f2] text-sm leading-6">
+                {lines.map((line, i) => (
+                  <div key={i} className="whitespace-pre">
+                    {line || '\n'}
+                  </div>
+                ))}
+              </code>
+            </pre>
+          </div>
+
+          {/* ミニマップ */}
+          <div className="w-[60px] flex-shrink-0 bg-[#282a36] border-l border-[#44475a]" />
+        </div>
+      </div>
+
+      {/* ステータスバー */}
+      <div className="h-6 bg-[#191a21] text-[#6272a4] flex items-center px-4 text-xs border-t border-[#44475a]">
+        <div className="flex items-center gap-4">
+          <span>{fileContent.language}</span>
+          <span>UTF-8</span>
+          <span>LF</span>
+          <span className="flex items-center gap-1">
+            <span className="w-2 h-2 rounded-full bg-[#50fa7b]" />
+            Prettier
+          </span>
+        </div>
+      </div>
     </div>
   )
 }
