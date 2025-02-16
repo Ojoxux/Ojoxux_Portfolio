@@ -49,41 +49,24 @@ export const fileStructure: FileStructure[] = [
 ]
 
 export const fileContents: Record<string, FileContent> = {
-  '/src/about-me/self-introduction.ts': {
-    path: '/src/about-me/self-introduction.ts',
+  '/src/about-me/introduction.ts': {
+    path: '/src/about-me/introduction.ts',
     language: 'typescript',
-    content: `const developer = "[あなたの名前]";
-  
-  function getIntroduction() {
-    return "フルスタックエンジニアとして、最先端の技術を駆使し、" +
-           "ユーザーに最適な体験を提供することに情熱を注いでいます。";
-  }
-  
-  export { developer, getIntroduction };`,
+    content: `const developer = "[あなたの名前]";`,
   },
   '/src/about-me/skills.ts': {
     path: '/src/about-me/skills.ts',
     language: 'typescript',
-    content: `const skills = {
-    frontend: [
-      "JavaScript",
-      "TypeScript",
-      "React",
-      "Next.js",
-      "HTML/CSS"
-    ],
-    backend: [
-      "Node.js",
-      "Express",
-      "Python",
-      "Django"
-    ],
-    database: [
-      "SQL",
-      "NoSQL"
-    ]
-  };
-  
-  export { skills };`,
+    content: `const skills = {}`,
+  },
+  '/src/about-me/experience.ts': {
+    path: '/src/about-me/experience.ts',
+    language: 'typescript',
+    content: `const experience = []`,
+  },
+  '/src/about-me/contact.ts': {
+    path: '/src/about-me/contact.ts',
+    language: 'typescript',
+    content: `const contact = {}`,
   },
 }
