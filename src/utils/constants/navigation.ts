@@ -4,7 +4,7 @@ export const routes = [
     label: '_home',
   },
   {
-    path: '/about',
+    path: '/about-me',
     label: '_about-me',
   },
   {
