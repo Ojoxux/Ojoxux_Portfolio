@@ -17,28 +17,28 @@ export const fileStructure: FileStructure[] = [
             path: '/src/about-me',
             children: [
               {
-                name: 'introduction.ts',
+                name: 'introduction.ojx',
                 type: 'file',
-                path: '/src/about-me/introduction.ts',
-                icon: '📄',
+                path: '/src/about-me/introduction.ojx',
+                icon: '🎯',
               },
               {
-                name: 'skills.ts',
+                name: 'skills.ojx',
                 type: 'file',
-                path: '/src/about-me/skills.ts',
-                icon: '📄',
+                path: '/src/about-me/skills.ojx',
+                icon: '⚡',
               },
               {
-                name: 'experience.ts',
+                name: 'experience.ojx',
                 type: 'file',
-                path: '/src/about-me/experience.ts',
-                icon: '📄',
+                path: '/src/about-me/experience.ojx',
+                icon: '🚀',
               },
               {
-                name: 'contact.ts',
+                name: 'contact.ojx',
                 type: 'file',
-                path: '/src/about-me/contact.ts',
-                icon: '📄',
+                path: '/src/about-me/contact.ojx',
+                icon: '💫',
               },
             ],
           },
@@ -49,24 +49,24 @@ export const fileStructure: FileStructure[] = [
 ]
 
 export const fileContents: Record<string, FileContent> = {
-  '/src/about-me/introduction.ts': {
-    path: '/src/about-me/introduction.ts',
-    language: 'typescript',
+  '/src/about-me/introduction.ojx': {
+    path: '/src/about-me/introduction.ojx',
+    language: 'javascript',
     content: `const developer = "[あなたの名前]";`,
   },
-  '/src/about-me/skills.ts': {
-    path: '/src/about-me/skills.ts',
-    language: 'typescript',
+  '/src/about-me/skills.ojx': {
+    path: '/src/about-me/skills.ojx',
+    language: 'javascript',
     content: `const skills = {}`,
   },
-  '/src/about-me/experience.ts': {
-    path: '/src/about-me/experience.ts',
-    language: 'typescript',
+  '/src/about-me/experience.ojx': {
+    path: '/src/about-me/experience.ojx',
+    language: 'javascript',
     content: `const experience = []`,
   },
-  '/src/about-me/contact.ts': {
-    path: '/src/about-me/contact.ts',
-    language: 'typescript',
+  '/src/about-me/contact.ojx': {
+    path: '/src/about-me/contact.ojx',
+    language: 'javascript',
     content: `const contact = {}`,
   },
 }
