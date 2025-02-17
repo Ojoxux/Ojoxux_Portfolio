@@ -10,7 +10,10 @@ export const EditorLayout = ({ children }: EditorLayoutProps) => {
       <main className={`min-h-[calc(100vh-88px)] ${styles.container} flex items-center`}>
         {children}
       </main>
-      <BottomNav />
+      <BottomNav
+        onGithubClick={() => window.open('https://github.com/Ojoxux', '_blank')}
+        onInstagramClick={() => window.open('https://instagram.com/ojoxux__18', '_blank')}
+      />
     </div>
   )
 }
