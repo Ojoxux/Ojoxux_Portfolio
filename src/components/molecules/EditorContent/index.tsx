@@ -1,6 +1,4 @@
-interface EditorContentProps {
-  content: string[]
-}
+import { EditorContentProps } from './types'
 
 export const EditorContent: React.FC<EditorContentProps> = ({ content }) => {
   return (
