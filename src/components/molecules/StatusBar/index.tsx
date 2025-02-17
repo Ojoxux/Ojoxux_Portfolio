@@ -1,7 +1,4 @@
-interface StatusBarProps {
-  language: string
-}
-
+import { StatusBarProps } from './types'
 export const StatusBar: React.FC<StatusBarProps> = ({ language }) => {
   return (
     <div className="h-6 bg-[#191a21] text-[#6272a4] flex items-center px-4 text-xs border-t border-[#44475a]">
