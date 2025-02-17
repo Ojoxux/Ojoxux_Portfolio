@@ -1,7 +1,7 @@
 ---
 name: '✨ 新機能'
 about: '新機能の提案や実装'
-title: '✨[feat]: '
+title: 'feat: ✨ '
 labels: 'enhancement'
 ---
 
