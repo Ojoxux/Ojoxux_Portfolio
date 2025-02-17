@@ -1,7 +1,5 @@
 import { styles, getStyle } from './mixins'
-import * as variants from './variants'
-
-export { styles, getStyle, variants }
+export { styles, getStyle }
 
 // 共通のスタイルユーティリティ
 export const layout = {
