@@ -1,8 +1,4 @@
-interface ActivityBarButtonProps {
-  icon: React.ReactNode
-  isActive?: boolean
-  onClick?: () => void
-}
+import { ActivityBarButtonProps } from './types'
 
 export const ActivityBarButton: React.FC<ActivityBarButtonProps> = ({
   icon,
