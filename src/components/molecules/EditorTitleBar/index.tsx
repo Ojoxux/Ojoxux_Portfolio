@@ -1,8 +1,5 @@
 import { EditorWindowControl } from '@/components/atoms/EditorWindowControl'
-
-interface EditorTitleBarProps {
-  title: string
-}
+import { EditorTitleBarProps } from './types'
 
 export const EditorTitleBar: React.FC<EditorTitleBarProps> = ({ title }) => {
   return (
