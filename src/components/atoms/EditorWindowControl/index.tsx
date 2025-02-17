@@ -1,8 +1,4 @@
-interface EditorWindowControlProps {
-  onClose?: () => void
-  onMinimize?: () => void
-  onMaximize?: () => void
-}
+import { EditorWindowControlProps } from './types'
 
 export const EditorWindowControl: React.FC<EditorWindowControlProps> = ({
   onClose,
