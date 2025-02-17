@@ -1,7 +1,7 @@
 ---
 name: '🐛 バグ報告'
 about: 'バグの報告用テンプレート'
-title: '🐛[bug]: '
+title: 'bug: 🐛 '
 labels: 'bug'
 assignees: ''
 ---
