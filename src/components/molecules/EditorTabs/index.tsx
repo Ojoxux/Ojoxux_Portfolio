@@ -1,11 +1,5 @@
 import { EditorTab } from '@/components/atoms/EditorTab'
-
-interface EditorTabsProps {
-  openFiles: string[]
-  currentFile: string
-  onFileSelect: (path: string) => void
-  onCloseFile: (path: string) => void
-}
+import { EditorTabsProps } from './types'
 
 export const EditorTabs: React.FC<EditorTabsProps> = ({
   openFiles,
