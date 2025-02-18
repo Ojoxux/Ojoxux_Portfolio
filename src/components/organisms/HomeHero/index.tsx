@@ -4,6 +4,7 @@ import { TypewriterText } from '@/components/atoms/TypewriterText'
 import { motion } from 'framer-motion'
 import { heroContent } from '@/utils/constants/hero'
 import { HomeHeroProps } from './types'
+import { GreetingText } from '@/components/atoms/GreetingText'
 import { useState } from 'react'
 
 export const HomeHero = ({ className = '' }: HomeHeroProps) => {
@@ -26,14 +27,7 @@ export const HomeHero = ({ className = '' }: HomeHeroProps) => {
       className={`w-full flex flex-col justify-center ${className}`}
     >
       {/* グリーティング */}
-      <div className="font-mono text-gray-200">
-        <TypewriterText
-          text={heroContent.greeting}
-          delay={0}
-          speed={50}
-          onComplete={() => setShowName(true)}
-        />
-      </div>
+      <GreetingText text={heroContent.greeting} onComplete={() => setShowName(true)} />
 
       {/* 名前 */}
       {showName && (
