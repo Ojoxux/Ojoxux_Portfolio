@@ -1,3 +1,5 @@
+'use client'
+
 import { EditorNav } from '@/components/organisms/EditorNav'
 import { BottomNav } from '@/components/organisms/BottomNav'
 import { EditorLayoutProps } from './types'
