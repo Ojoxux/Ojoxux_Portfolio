@@ -1,7 +1,7 @@
 ---
 name: '♻️ リファクタリング'
 about: 'コードの改善や整理'
-title: '♻️[refactor]: '
+title: 'refactor: ♻️ '
 labels: 'refactor'
 ---
 

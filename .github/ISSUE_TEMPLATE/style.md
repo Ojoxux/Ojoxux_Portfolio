@@ -1,7 +1,7 @@
 ---
 name: '🎨 スタイル'
 about: 'UIやデザインの変更'
-title: '🎨[style]: '
+title: 'style: 🎨'
 labels: 'style'
 ---
 
