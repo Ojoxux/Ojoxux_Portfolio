@@ -1,7 +1,7 @@
 ---
 name: '🧪 テスト'
 about: 'テストの追加・更新'
-title: '🧪[test]: '
+title: 'test: 🧪'
 labels: 'test'
 ---
 
