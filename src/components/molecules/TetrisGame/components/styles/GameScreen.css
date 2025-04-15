@@ -54,7 +54,7 @@
 
 .genie-open,
 .genie-close {
-  transform-origin: bottom right;
+  /* transformの原点は個別のコンポーネントで指定 */
 }
 
 .genie-open {
