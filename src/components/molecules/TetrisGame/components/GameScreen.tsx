@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import Draggable, { DraggableEventHandler } from 'react-draggable'
+import React, { useState, useEffect } from 'react'
+import Draggable from 'react-draggable'
 import TetrisBlock from '@/components/atoms/TetrisBlock/index'
 import { TETROMINOS, TetrominoType } from '@/utils/constants/tetris'
 import { ScoreBoard } from './ScoreBoard'
@@ -10,8 +10,6 @@ import './styles/GameScreen.css'
 
 interface GameScreenProps {
   nodeRef: React.RefObject<HTMLDivElement>
-  position: { x: number; y: number }
-  onDrag: DraggableEventHandler
   board: (string | null)[][]
   currentPiece?: GameState['currentPiece']
   score: number
@@ -29,8 +27,6 @@ interface GameScreenProps {
 
 export const GameScreen: React.FC<GameScreenProps> = ({
   nodeRef,
-  position,
-  onDrag,
   board,
   currentPiece,
   score,
@@ -46,19 +42,35 @@ export const GameScreen: React.FC<GameScreenProps> = ({
   className = '',
 }) => {
   const [isClosing, setIsClosing] = useState(false)
+  const [isAnimating, setIsAnimating] = useState(true)
+
+  useEffect(() => {
+    // アニメーション完了後にクラスを削除
+    const timer = setTimeout(() => {
+      setIsAnimating(false)
+    }, 600)
+    return () => clearTimeout(timer)
+  }, [])
 
   const handleClose = () => {
     setIsClosing(true)
+    setIsAnimating(true)
     setTimeout(() => {
       if (onClose) onClose()
     }, 600)
   }
 
   return (
-    <Draggable handle=".handle" nodeRef={nodeRef} position={position} onDrag={onDrag}>
+    <Draggable handle=".handle" nodeRef={nodeRef} bounds="body">
       <div
         ref={nodeRef}
-        className={`fixed top-10 right-10 z-20 ${className} ${isClosing ? 'genie-close' : 'genie-open'}`}
+        className={`relative z-20 ${className} ${isAnimating ? (isClosing ? 'genie-close' : 'genie-open') : ''}`}
+        style={{
+          transformOrigin: 'bottom right',
+          position: 'fixed',
+          top: '2.5rem',
+          right: '2.5rem',
+        }}
       >
         <div className="relative w-[600px] bg-[#282a36]/95 backdrop-blur-md rounded-xl border border-[#6272a4]/30 shadow-2xl">
           {/* エディタ風タブバー（ドラッグハンドル） */}

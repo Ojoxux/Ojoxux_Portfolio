@@ -16,8 +16,8 @@ export interface TitleScreenProps {
 
 export interface GameScreenProps {
   nodeRef: RefObject<HTMLDivElement>
-  position: { x: number; y: number }
-  onDrag: DraggableEventHandler
+  position?: { x: number; y: number }
+  onDrag?: DraggableEventHandler
   board: GameState['board']
   currentPiece: GameState['currentPiece']
   score: number
