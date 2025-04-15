@@ -8,7 +8,6 @@ import { GameScreen } from './components/GameScreen'
 
 export const TetrisGame = ({ className = '', onScoreUpdate, onGameOver }: TetrisGameProps) => {
   const [isGameStarted, setIsGameStarted] = useState(false)
-  const [position, setPosition] = useState({ x: 0, y: 0 })
   const nodeRef = useRef<HTMLDivElement>(null!)
   const {
     board,
@@ -102,8 +101,6 @@ export const TetrisGame = ({ className = '', onScoreUpdate, onGameOver }: Tetris
       {isGameStarted && (
         <GameScreen
           nodeRef={nodeRef}
-          position={position}
-          onDrag={(e, data) => setPosition({ x: data.x, y: data.y })}
           board={board}
           currentPiece={currentPiece}
           score={score}
