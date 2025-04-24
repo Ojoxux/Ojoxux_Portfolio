@@ -2,12 +2,28 @@ import React, { useState } from 'react'
 import { DirectoryTreeProps, FileStructure } from './types'
 import { fileStructure } from '@/utils/constants/files'
 
+const getAllDirectoryPaths = (items: FileStructure[]): string[] => {
+  let paths: string[] = []
+  items.forEach(item => {
+    if (item.type === 'directory') {
+      paths.push(item.path) // Add the directory path
+      if (item.children) {
+        // Recursively get paths from children
+        paths = paths.concat(getAllDirectoryPaths(item.children))
+      }
+    }
+  })
+  return paths
+}
+
+const initialExpandedPaths = getAllDirectoryPaths(fileStructure)
+
 export const DirectoryTree: React.FC<DirectoryTreeProps> = ({
   className = '',
   currentFile,
   onFileSelect,
 }) => {
-  const [expandedDirs, setExpandedDirs] = useState<Set<string>>(new Set(['/']))
+  const [expandedDirs, setExpandedDirs] = useState<Set<string>>(new Set(initialExpandedPaths))
 
   const toggleDir = (path: string) => {
     const newExpanded = new Set(expandedDirs)
