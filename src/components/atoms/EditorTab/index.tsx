@@ -1,4 +1,5 @@
 import { EditorTabProps } from './types'
+import { SvgIcon } from '@/components/atoms/SvgIcon'
 
 export const EditorTab: React.FC<EditorTabProps> = ({
   fileName,
@@ -7,6 +8,8 @@ export const EditorTab: React.FC<EditorTabProps> = ({
   onSelect,
   onClose,
 }) => {
+  const isOjxFile = extension === 'ojx'
+
   return (
     <div
       onClick={onSelect}
@@ -17,8 +20,16 @@ export const EditorTab: React.FC<EditorTabProps> = ({
           ${isActive ? 'after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-[#ff79c6]' : ''}
         `}
     >
-      <span className="text-[#ff79c6]">{extension}</span>
-      <span>{fileName}</span>
+      {isOjxFile ? (
+        <SvgIcon
+          style={{ width: '24px', height: '24px', display: 'inline-block' }}
+          src="/assets/ojx-logo.svg"
+          alt="Ojx Logo"
+        />
+      ) : (
+        <span className="text-[#ff79c6]">{extension}</span>
+      )}
+      <span className="text-xs">{fileName}</span>
       <button
         onClick={onClose}
         className="opacity-0 group-hover:opacity-100 hover:text-[#ff5555] transition-opacity"
