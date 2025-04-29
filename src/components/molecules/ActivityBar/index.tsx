@@ -1,8 +1,9 @@
 import { ActivityBarButton } from '@/components/atoms/ActivityBarButton'
+import { ActivityBarProps } from './types'
 
-export const ActivityBar: React.FC = () => {
+export const ActivityBar: React.FC<ActivityBarProps> = ({ className = '' }) => {
   return (
-    <div className="w-12 bg-[#21222c] flex flex-col items-center py-4 space-y-4">
+    <div className={`w-14 bg-[#21222c] flex flex-col items-center py-4 space-y-4 ${className}`}>
       <ActivityBarButton
         icon={
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
