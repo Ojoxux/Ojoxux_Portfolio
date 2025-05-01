@@ -81,5 +81,3 @@ export const TitleScreen = ({ onStart, onClose, className = '' }: TitleScreenPro
     </div>
   </div>
 )
-
-export default TitleScreen

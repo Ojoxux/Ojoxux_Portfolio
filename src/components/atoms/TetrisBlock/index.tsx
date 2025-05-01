@@ -1,7 +1,11 @@
 import React from 'react'
 import { TetrisBlockProps } from './types'
 
-const TetrisBlock: React.FC<TetrisBlockProps> = ({ color, isClearing = false, className = '' }) => {
+export const TetrisBlock: React.FC<TetrisBlockProps> = ({
+  color,
+  isClearing = false,
+  className = '',
+}) => {
   // isClearing true のときだけフェードアウト＆縮小のアニメーションを適用
   const style = isClearing
     ? {
@@ -19,5 +23,3 @@ const TetrisBlock: React.FC<TetrisBlockProps> = ({ color, isClearing = false, cl
 
   return <div className={className} style={style} />
 }
-
-export default TetrisBlock

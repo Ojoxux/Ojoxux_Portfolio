@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Draggable from 'react-draggable'
-import TetrisBlock from '@/components/atoms/TetrisBlock/index'
+import { TetrisBlock } from '@/components/atoms/TetrisBlock'
 import { TETROMINOS, TetrominoType } from '@/utils/constants/tetris'
 import { ScoreBoard } from './ScoreBoard'
 import { ControlsInfo } from './ControlsInfo'
@@ -168,5 +168,3 @@ export const GameScreen: React.FC<GameScreenProps> = ({
     </Draggable>
   )
 }
-
-export default GameScreen

@@ -2,7 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import { AvatarProps } from './types'
 
-const Avatar: React.FC<AvatarProps> = ({ src, alt, size = 80 }) => {
+export const Avatar: React.FC<AvatarProps> = ({ src, alt, size = 80 }) => {
   return (
     <Image
       src={src}
@@ -14,5 +14,3 @@ const Avatar: React.FC<AvatarProps> = ({ src, alt, size = 80 }) => {
     />
   )
 }
-
-export default Avatar
