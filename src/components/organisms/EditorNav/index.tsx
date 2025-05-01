@@ -13,7 +13,7 @@ export const EditorNav = () => {
 
   return (
     <nav
-      className={`w-full bg-[#282a36] border-b border-[#44475a] font-[var(--font-fira-code)] text-sm ${styles.glassmorphism}`}
+      className={`relative z-10 w-full bg-[#282a36] border-b border-[#44475a] font-[var(--font-fira-code)] text-sm ${styles.glassmorphism}`}
     >
       <div className="flex justify-between h-12">
         <div className="flex">
