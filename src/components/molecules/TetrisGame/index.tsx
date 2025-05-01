@@ -119,5 +119,3 @@ export const TetrisGame = ({ className = '', onScoreUpdate, onGameOver }: Tetris
     </div>
   )
 }
-
-export default TetrisGame
