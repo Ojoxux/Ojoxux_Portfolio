@@ -1,4 +1,4 @@
-import TetrisBlock from '@/components/atoms/TetrisBlock/index'
+import { TetrisBlock } from '@/components/atoms/TetrisBlock'
 import { TETROMINOS } from '@/utils/constants/tetris'
 import { NextPiecePreviewProps } from '../types'
 
