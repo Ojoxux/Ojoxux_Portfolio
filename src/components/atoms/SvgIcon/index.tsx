@@ -1,6 +1,6 @@
-import React from 'react'
 import Image from 'next/image'
-import { SvgIconProps } from './types'
+import type React from 'react'
+import type { SvgIconProps } from './types'
 
 export const SvgIcon: React.FC<SvgIconProps> = ({
   className = '',

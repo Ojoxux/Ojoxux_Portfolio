@@ -1,4 +1,4 @@
-import { FileStructure } from '@/components/molecules/DirectoryTree/types'
+import type { FileStructure } from '@/components/molecules/DirectoryTree/types'
 
 // プロジェクト専用のファイル構造を定義 (ルートパス基準に戻す)
 export const projectsFileStructure: FileStructure[] = [

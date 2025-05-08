@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { type FileStructure } from './types'
+import type { FileStructure } from './types'
 
 const getAllDirectoryPaths = (items: FileStructure[]): string[] => {
   let paths: string[] = []

@@ -1,6 +1,6 @@
-import { RefObject } from 'react'
-import { DraggableEventHandler } from 'react-draggable'
-import { GameState } from '@/hooks/useTetris'
+import type { GameState } from '@/hooks/useTetris'
+import type { RefObject } from 'react'
+import type { DraggableEventHandler } from 'react-draggable'
 
 export interface TetrisGameProps {
   className?: string

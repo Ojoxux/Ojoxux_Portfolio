@@ -1,5 +1,5 @@
-import { themeConfig } from '../utils/theme/config'
-import { colors } from '../utils/theme/colors'
+import type { colors } from '../utils/theme/colors'
+import type { themeConfig } from '../utils/theme/config'
 
 // テーマの型定義
 export interface Theme {

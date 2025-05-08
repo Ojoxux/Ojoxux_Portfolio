@@ -1,5 +1,5 @@
-import React from 'react'
-import { TetrisBlockProps } from './types'
+import type React from 'react'
+import type { TetrisBlockProps } from './types'
 
 export const TetrisBlock: React.FC<TetrisBlockProps> = ({
   color,

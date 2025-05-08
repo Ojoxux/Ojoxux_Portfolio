@@ -1,4 +1,4 @@
-import { styles, getStyle } from './mixins'
+import { getStyle, styles } from './mixins'
 export { styles, getStyle }
 
 // 共通のスタイルユーティリティ

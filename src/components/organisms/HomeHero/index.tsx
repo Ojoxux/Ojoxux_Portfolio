@@ -1,11 +1,11 @@
 'use client'
 
-import { TypewriterText } from '@/components/atoms/TypewriterText'
-import { motion } from 'framer-motion'
-import { heroContent } from '@/utils/constants/hero'
-import { HomeHeroProps } from './types'
 import { GreetingText } from '@/components/atoms/GreetingText'
+import { TypewriterText } from '@/components/atoms/TypewriterText'
+import { heroContent } from '@/utils/constants/hero'
+import { motion } from 'framer-motion'
 import { useState } from 'react'
+import type { HomeHeroProps } from './types'
 
 export const HomeHero = ({ className = '' }: HomeHeroProps) => {
   const [showName, setShowName] = useState(false)
@@ -17,8 +17,8 @@ export const HomeHero = ({ className = '' }: HomeHeroProps) => {
 
   return (
     <motion.div
-      initial="hidden"
-      animate="visible"
+      initial='hidden'
+      animate='visible'
       variants={{
         hidden: { opacity: 0, y: 20 },
         visible: { opacity: 1, y: 0 },
@@ -31,7 +31,7 @@ export const HomeHero = ({ className = '' }: HomeHeroProps) => {
 
       {/* 名前 */}
       {showName && (
-        <div className="text-4xl md:text-6xl font-bold text-white mt-2">
+        <div className='text-4xl md:text-6xl font-bold text-white mt-2'>
           <TypewriterText
             text={heroContent.name}
             delay={0}
@@ -43,7 +43,7 @@ export const HomeHero = ({ className = '' }: HomeHeroProps) => {
 
       {/* 役割 */}
       {showRole && (
-        <div className="font-mono text-[#bd93f9] mt-2 text-xl md:text-2xl">
+        <div className='font-mono text-[#bd93f9] mt-2 text-xl md:text-2xl'>
           <TypewriterText
             text={heroContent.role}
             delay={0}
@@ -55,12 +55,12 @@ export const HomeHero = ({ className = '' }: HomeHeroProps) => {
 
       {/* コメント */}
       {showComments && (
-        <div className="mt-8 font-mono text-gray-200">
+        <div className='mt-8 font-mono text-gray-200'>
           <TypewriterText
             text={heroContent.comments[0]}
             delay={0}
             speed={50}
-            className="block"
+            className='block'
             onComplete={() => setShowSecondComment(true)}
           />
           {showSecondComment && (
@@ -68,34 +68,32 @@ export const HomeHero = ({ className = '' }: HomeHeroProps) => {
               text={heroContent.comments[1]}
               delay={0}
               speed={50}
-              className="block"
+              className='block'
               onComplete={() => setShowGithub(true)}
             />
           )}
           {showGithub && (
-            <div className="mt-2 flex">
+            <div className='mt-2 flex'>
               <TypewriterText
                 text={heroContent.githubLink.constText}
                 delay={0}
                 speed={50}
-                className="text-[#ff79c6]"
+                className='text-[#ff79c6]'
                 onComplete={() => setShowGithubUrl(true)}
                 showCursor={!showGithubUrl}
               />
               {showGithubUrl && (
-                <>
-                  <TypewriterText
-                    text={
-                      heroContent.githubLink.quote +
-                      heroContent.githubLink.url +
-                      heroContent.githubLink.suffix
-                    }
-                    delay={0}
-                    speed={50}
-                    className="text-[#f1fa8c]"
-                    showCursor={true}
-                  />
-                </>
+                <TypewriterText
+                  text={
+                    heroContent.githubLink.quote +
+                    heroContent.githubLink.url +
+                    heroContent.githubLink.suffix
+                  }
+                  delay={0}
+                  speed={50}
+                  className='text-[#f1fa8c]'
+                  showCursor={true}
+                />
               )}
             </div>
           )}

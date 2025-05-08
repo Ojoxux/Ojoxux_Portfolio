@@ -1,16 +1,16 @@
 'use client'
 
 import { NavLink } from '@/components/atoms/NavLink'
-import { usePathname } from 'next/navigation'
 import { routes } from '@/utils/constants/navigation'
 import { styles } from '@/utils/styles/constants'
+import { usePathname } from 'next/navigation'
 
 export const NavItems = () => {
   const pathname = usePathname()
 
   return (
     <div className={`${styles.flexBetween} flex-1`}>
-      <div className="flex">
+      <div className='flex'>
         {routes
           .filter(item => item.path !== '/contact-me')
           .map(item => (

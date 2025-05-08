@@ -1,10 +1,9 @@
-import React from 'react'
 import { TypewriterText } from '@/components/atoms/TypewriterText'
-import { GreetingTextProps } from './types'
+import type { GreetingTextProps } from './types'
 
 export const GreetingText = ({ text, onComplete }: GreetingTextProps) => {
   return (
-    <div className="font-mono text-gray-200">
+    <div className='font-mono text-gray-200'>
       <TypewriterText text={text} delay={0} speed={50} onComplete={onComplete} />
     </div>
   )

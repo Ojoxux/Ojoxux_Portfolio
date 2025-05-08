@@ -1,4 +1,4 @@
-import { StyleProps } from '@/types/styles'
+import type { StyleProps } from '@/types/styles'
 
 export interface TypewriterTextProps extends StyleProps {
   text: string

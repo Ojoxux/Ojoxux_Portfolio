@@ -1,5 +1,5 @@
 import { EditorTab } from '@/components/atoms/EditorTab'
-import { EditorTabsProps } from './types'
+import type { EditorTabsProps } from './types'
 
 export const EditorTabs: React.FC<EditorTabsProps> = ({
   openFiles,
@@ -8,8 +8,8 @@ export const EditorTabs: React.FC<EditorTabsProps> = ({
   onCloseFile,
 }) => {
   return (
-    <div className="h-10 bg-[#21222c] flex items-center border-b border-[#44475a]">
-      <div className="flex h-full">
+    <div className='h-10 bg-[#21222c] flex items-center border-b border-[#44475a]'>
+      <div className='flex h-full'>
         {openFiles.map(path => {
           const isActive = path === currentFile
           const fileName = path.split('/').pop()

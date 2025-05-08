@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 interface UseTypewriterProps {
   text: string
@@ -20,10 +20,9 @@ export const useTypewriter = ({ text, speed = 50, delay = 0, onComplete }: UseTy
       }, speed)
 
       return () => clearTimeout(timeout)
-    } else {
-      setIsTyping(false)
-      onComplete?.()
     }
+    setIsTyping(false)
+    onComplete?.()
   }, [currentIndex, onComplete, speed, text])
 
   useEffect(() => {
