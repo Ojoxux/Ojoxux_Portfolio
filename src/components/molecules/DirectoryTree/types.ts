@@ -1,15 +1,17 @@
 export interface DirectoryTreeProps {
   className?: string
-  currentFile: string
+  currentFile: string | null
   onFileSelect: (path: string) => void
+  rootDirectory?: string
+  fileStructure: FileStructure[]
 }
 
 export interface FileStructure {
   name: string
   type: 'file' | 'directory'
   path: string
-  children?: FileStructure[]
   icon?: string
+  children?: FileStructure[]
 }
 
 export interface FileContent {
