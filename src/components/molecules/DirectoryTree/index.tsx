@@ -75,6 +75,7 @@ export const DirectoryTree: React.FC<DirectoryTreeProps> = ({
 
   const filteredFileStructure = getFilteredFileStructure()
 
+  // フォルダ要素をクリックしたときに、フォルダ配下のファイルをレンダリングする
   const renderItem = (item: FileStructure, level: number = 0) => {
     const isExpanded = expandedDirs.has(item.path)
     const isCurrentFile = item.path === currentFile
@@ -110,7 +111,7 @@ export const DirectoryTree: React.FC<DirectoryTreeProps> = ({
               {/* ここにデフォルトファイルアイコン（例: 📄）や item.icon を表示するロジック */}📄
             </span>
           )}
-          <span>{item.name}</span>
+          <span className="whitespace-nowrap overflow-hidden text-ellipsis">{item.name}</span>
         </div>
       )
     }
@@ -125,7 +126,7 @@ export const DirectoryTree: React.FC<DirectoryTreeProps> = ({
           <span className="mr-2 w-4 inline-block text-center flex-shrink-0">
             {isExpanded ? '▼' : '▶'}
           </span>
-          {item.name}
+          <span className="whitespace-nowrap overflow-hidden text-ellipsis">{item.name}</span>
         </div>
         {isExpanded && item.children?.map(child => renderItem(child, level + 1))}
       </div>
