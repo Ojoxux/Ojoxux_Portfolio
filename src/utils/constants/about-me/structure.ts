@@ -1,4 +1,4 @@
-import { FileStructure } from '@/components/molecules/DirectoryTree/types'
+import type { FileStructure } from '@/components/molecules/DirectoryTree/types'
 
 // about-me ページ専用のファイル構造を定義
 export const aboutMeFileStructure: FileStructure[] = [

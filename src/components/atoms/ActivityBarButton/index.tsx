@@ -1,4 +1,4 @@
-import { ActivityBarButtonProps } from './types'
+import type { ActivityBarButtonProps } from './types'
 
 export const ActivityBarButton: React.FC<ActivityBarButtonProps> = ({
   icon,
@@ -7,6 +7,7 @@ export const ActivityBarButton: React.FC<ActivityBarButtonProps> = ({
 }) => {
   return (
     <button
+      type='button'
       onClick={onClick}
       className={`
           w-8 h-8 flex items-center justify-center

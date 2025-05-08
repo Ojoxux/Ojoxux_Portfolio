@@ -1,8 +1,8 @@
-import { FileContent } from '@/components/molecules/DirectoryTree/types'
-import { teamind } from './teamind'
+import type { FileContent } from '@/components/molecules/DirectoryTree/types'
 import { bachimegu } from './bachimegu'
 import { githubContributionIsland } from './github-contribution-island'
 import { nomitto } from './nomitto'
+import { teamind } from './teamind'
 
 export const projectFiles: Record<string, FileContent> = {
   '/src/projects/teamind.ojx': teamind,

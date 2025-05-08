@@ -1,10 +1,10 @@
 'use client'
 
-import { useEffect, useState, useRef } from 'react'
 import { useTetris } from '@/hooks/useTetris'
-import { TetrisGameProps } from './types'
-import { TitleScreen } from './components/TitleScreen'
+import { useEffect, useRef, useState } from 'react'
 import { GameScreen } from './components/GameScreen'
+import { TitleScreen } from './components/TitleScreen'
+import type { TetrisGameProps } from './types'
 
 export const TetrisGame = ({ className = '', onScoreUpdate, onGameOver }: TetrisGameProps) => {
   const [isGameStarted, setIsGameStarted] = useState(false)
@@ -64,8 +64,14 @@ export const TetrisGame = ({ className = '', onScoreUpdate, onGameOver }: Tetris
       }
     }
 
-    window.addEventListener('keydown', handleKeyDown, { capture: true, passive: false })
-    window.addEventListener('keyup', handleKeyUp, { capture: true, passive: false })
+    window.addEventListener('keydown', handleKeyDown, {
+      capture: true,
+      passive: false,
+    })
+    window.addEventListener('keyup', handleKeyUp, {
+      capture: true,
+      passive: false,
+    })
     return () => {
       window.removeEventListener('keydown', handleKeyDown, { capture: true })
       window.removeEventListener('keyup', handleKeyUp, { capture: true })
@@ -113,7 +119,7 @@ export const TetrisGame = ({ className = '', onScoreUpdate, onGameOver }: Tetris
           initGame={initGame}
           togglePause={togglePause}
           onClose={handleCloseGame}
-          className=""
+          className=''
         />
       )}
     </div>

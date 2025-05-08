@@ -1,15 +1,15 @@
-import { useState, useCallback, useEffect, useRef } from 'react'
 import {
-  BOARD_WIDTH,
   BOARD_HEIGHT,
-  TETROMINOS,
+  BOARD_WIDTH,
   INITIAL_SPEED,
+  LEVEL_REQUIREMENTS,
   LEVEL_SPEED_MULTIPLIER,
   POINTS,
-  LEVEL_REQUIREMENTS,
-  TetrominoType,
   SOFT_DROP_SPEED,
+  TETROMINOS,
+  type TetrominoType,
 } from '@/utils/constants/tetris'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
 interface Position {
   x: number
@@ -213,10 +213,10 @@ export const useTetris = () => {
         state.currentPiece.shape.forEach((row, y) => {
           row.forEach((value, x) => {
             if (value) {
-              const boardX = state.currentPiece!.position.x + x
-              const boardY = state.currentPiece!.position.y + y
+              const boardX = state.currentPiece?.position.x + x
+              const boardY = state.currentPiece?.position.y + y
               if (boardY >= 0 && boardY < BOARD_HEIGHT && boardX >= 0 && boardX < BOARD_WIDTH) {
-                newBoard[boardY][boardX] = state.currentPiece!.type
+                newBoard[boardY][boardX] = state.currentPiece?.type
               }
             }
           })
@@ -236,7 +236,7 @@ export const useTetris = () => {
         currentPiece: {
           ...clonePiece(state.nextPiece!),
           position: {
-            x: Math.floor(BOARD_WIDTH / 2) - Math.floor(state.nextPiece!.shape[0].length / 2),
+            x: Math.floor(BOARD_WIDTH / 2) - Math.floor(state.nextPiece?.shape[0].length / 2),
             y: -2,
           },
         },
@@ -268,7 +268,10 @@ export const useTetris = () => {
 
       // ボードのコピー作成
       const newBoard = prev.board.map(row => [...row])
-      const lockedPiece = { ...prev.currentPiece, position: { x: currentX, y: newY } }
+      const lockedPiece = {
+        ...prev.currentPiece,
+        position: { x: currentX, y: newY },
+      }
 
       // 現在のピースをボードに固定
       lockedPiece.shape.forEach((row, y) => {
@@ -307,7 +310,7 @@ export const useTetris = () => {
           ...clonePiece(prev.nextPiece!),
           // 初期位置を設定（中央上部へ配置）
           position: {
-            x: Math.floor(BOARD_WIDTH / 2) - Math.floor(prev.nextPiece!.shape[0].length / 2),
+            x: Math.floor(BOARD_WIDTH / 2) - Math.floor(prev.nextPiece?.shape[0].length / 2),
             y: -2,
           },
         },
@@ -349,10 +352,10 @@ export const useTetris = () => {
             prev.currentPiece.shape.forEach((row, y) => {
               row.forEach((value, x) => {
                 if (value) {
-                  const boardY = prev.currentPiece!.position.y + y
-                  const boardX = prev.currentPiece!.position.x + x
+                  const boardY = prev.currentPiece?.position.y + y
+                  const boardX = prev.currentPiece?.position.x + x
                   if (boardY >= 0 && boardY < BOARD_HEIGHT) {
-                    newBoard[boardY][boardX] = prev.currentPiece!.type
+                    newBoard[boardY][boardX] = prev.currentPiece?.type
                   }
                 }
               })
@@ -362,7 +365,7 @@ export const useTetris = () => {
             const isGameOver = prev.currentPiece.shape.some((row, y) => {
               return row.some(value => {
                 if (!value) return false
-                const boardY = prev.currentPiece!.position.y + y
+                const boardY = prev.currentPiece?.position.y + y
                 return boardY < 0
               })
             })
@@ -390,7 +393,7 @@ export const useTetris = () => {
               currentPiece: {
                 ...clonePiece(prev.nextPiece!),
                 position: {
-                  x: Math.floor(BOARD_WIDTH / 2) - Math.floor(prev.nextPiece!.shape[0].length / 2),
+                  x: Math.floor(BOARD_WIDTH / 2) - Math.floor(prev.nextPiece?.shape[0].length / 2),
                   y: -2,
                 },
               },
@@ -418,7 +421,7 @@ export const useTetris = () => {
 
   // レベルに応じた現在のドロップ速度を計算
   const getCurrentSpeed = useCallback((level: number) => {
-    return INITIAL_SPEED * Math.pow(LEVEL_SPEED_MULTIPLIER, level - 1)
+    return INITIAL_SPEED * LEVEL_SPEED_MULTIPLIER ** (level - 1)
   }, [])
 
   // ソフトドロップ状態を追加
@@ -482,8 +485,8 @@ export const useTetris = () => {
     setGameState(prev => {
       if (!prev.currentPiece || prev.isGameOver || prev.isPaused) return prev
 
-      const rotatedShape = prev.currentPiece!.shape[0].map((_, index) =>
-        prev.currentPiece!.shape.map(row => row[row.length - 1 - index])
+      const rotatedShape = prev.currentPiece?.shape[0].map((_, index) =>
+        prev.currentPiece?.shape.map(row => row[row.length - 1 - index])
       )
 
       const rotatedPiece = {

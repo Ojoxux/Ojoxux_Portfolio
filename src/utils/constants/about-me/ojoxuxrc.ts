@@ -1,4 +1,4 @@
-import { FileContent } from '@/components/molecules/DirectoryTree/types'
+import type { FileContent } from '@/components/molecules/DirectoryTree/types'
 
 export const ojoxuxrc: FileContent = {
   path: '/src/.ojoxuxrc',

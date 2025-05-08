@@ -15,7 +15,7 @@ export async function highlightCode(code: string, lang: string): Promise<string>
     lang === 'ojx' ? 'typescript' : (lang as shiki.BundledLanguage)
 
   // getHighlighter 後は null でないはずだが、念のためチェックするか `!` を使う
-  const loadedLangs = highlighter!.getLoadedLanguages()
+  const loadedLangs = highlighter?.getLoadedLanguages()
 
   // サポートされていない言語の場合、デフォルトの<pre><code>で囲む
   if (!loadedLangs.includes(shikiLang)) {
@@ -26,7 +26,7 @@ export async function highlightCode(code: string, lang: string): Promise<string>
 
   try {
     // getHighlighter 後は null でないはずだが、念のためチェックするか `!` を使う
-    return highlighter!.codeToHtml(code, {
+    return highlighter?.codeToHtml(code, {
       lang: shikiLang,
       theme: 'dracula',
     })

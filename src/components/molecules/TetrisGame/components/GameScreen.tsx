@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from 'react'
-import Draggable from 'react-draggable'
 import { TetrisBlock } from '@/components/atoms/TetrisBlock'
-import { TETROMINOS, TetrominoType } from '@/utils/constants/tetris'
-import { ScoreBoard } from './ScoreBoard'
+import type { GameState } from '@/hooks/useTetris'
+import { TETROMINOS, type TetrominoType } from '@/utils/constants/tetris'
+import type { FC, RefObject } from 'react'
+import { useState, useEffect, Fragment } from 'react'
+import Draggable from 'react-draggable'
 import { ControlsInfo } from './ControlsInfo'
 import { NextPiecePreview } from './NextPiecePreview'
-import { GameState } from '@/hooks/useTetris'
+import { ScoreBoard } from './ScoreBoard'
 import './styles/GameScreen.css'
 
 interface GameScreenProps {
-  nodeRef: React.RefObject<HTMLDivElement>
+  nodeRef: RefObject<HTMLDivElement>
   board: (string | null)[][]
   currentPiece?: GameState['currentPiece']
   score: number
@@ -25,7 +26,7 @@ interface GameScreenProps {
   className?: string
 }
 
-export const GameScreen: React.FC<GameScreenProps> = ({
+export const GameScreen: FC<GameScreenProps> = ({
   nodeRef,
   board,
   currentPiece,
@@ -61,7 +62,7 @@ export const GameScreen: React.FC<GameScreenProps> = ({
   }
 
   return (
-    <Draggable handle=".handle" nodeRef={nodeRef} bounds="body">
+    <Draggable handle='.handle' nodeRef={nodeRef} bounds='body'>
       <div
         ref={nodeRef}
         className={`relative z-20 ${className} ${isAnimating ? (isClosing ? 'genie-close' : 'genie-open') : ''}`}
@@ -72,33 +73,33 @@ export const GameScreen: React.FC<GameScreenProps> = ({
           right: '2.5rem',
         }}
       >
-        <div className="relative w-[600px] bg-[#282a36]/95 backdrop-blur-md rounded-xl border border-[#6272a4]/30 shadow-2xl">
+        <div className='relative w-[600px] bg-[#282a36]/95 backdrop-blur-md rounded-xl border border-[#6272a4]/30 shadow-2xl'>
           {/* エディタ風タブバー（ドラッグハンドル） */}
-          <div className="h-10 bg-[#282a36]/60 border-b border-[#6272a4]/30 rounded-t-xl flex items-center px-4 gap-2 handle cursor-move">
-            <div className="flex items-center gap-1.5">
+          <div className='h-10 bg-[#282a36]/60 border-b border-[#6272a4]/30 rounded-t-xl flex items-center px-4 gap-2 handle cursor-move'>
+            <div className='flex items-center gap-1.5'>
               <div
                 onClick={handleClose}
-                className="w-3 h-3 rounded-full bg-[#ff5555] cursor-pointer"
+                className='w-3 h-3 rounded-full bg-[#ff5555] cursor-pointer'
               />
-              <div className="w-3 h-3 rounded-full bg-[#f1fa8c]" />
-              <div className="w-3 h-3 rounded-full bg-[#50fa7b]" />
+              <div className='w-3 h-3 rounded-full bg-[#f1fa8c]' />
+              <div className='w-3 h-3 rounded-full bg-[#50fa7b]' />
             </div>
-            <span className="text-sm text-[#f8f8f2] ml-2">tetris.exe</span>
+            <span className='text-sm text-[#f8f8f2] ml-2'>tetris.exe</span>
           </div>
 
           {/* メインコンテンツ */}
-          <div className="flex gap-4 p-4">
+          <div className='flex gap-4 p-4'>
             {/* ゲームボード（コードエディタ風：行番号ガターとグリッドを同一コンテナに統合） */}
-            <div className="relative bg-gradient-to-b from-[#282a36] to-[#44475a] rounded-lg shadow-xl border border-[#6272a4] p-4">
-              <div className="grid grid-cols-[auto,1fr] gap-1 bg-[#282a36] rounded-lg p-2">
+            <div className='relative bg-gradient-to-b from-[#282a36] to-[#44475a] rounded-lg shadow-xl border border-[#6272a4] p-4'>
+              <div className='grid grid-cols-[auto,1fr] gap-1 bg-[#282a36] rounded-lg p-2'>
                 {board.map((row, y) => (
-                  <React.Fragment key={y}>
+                  <Fragment key={y}>
                     {/* 行番号ガター */}
-                    <div className="text-[#6272a4] text-xs w-6 h-6 leading-6 text-right">
+                    <div className='text-[#6272a4] text-xs w-6 h-6 leading-6 text-right'>
                       {String(y + 1).padStart(2, '0')}
                     </div>
                     {/* ゲームボードの各行 */}
-                    <div className="flex gap-1">
+                    <div className='flex gap-1'>
                       {row.map((cell, x) => {
                         // 現在のピースの位置をチェック
                         const isCurrentPiece = currentPiece?.shape.some((shapeRow, shapeY) =>
@@ -113,7 +114,7 @@ export const GameScreen: React.FC<GameScreenProps> = ({
                             key={`${x}-${y}`}
                             color={
                               isCurrentPiece
-                                ? TETROMINOS[currentPiece!.type].color
+                                ? TETROMINOS[currentPiece?.type].color
                                 : cell
                                   ? TETROMINOS[cell as TetrominoType].color
                                   : undefined
@@ -123,25 +124,25 @@ export const GameScreen: React.FC<GameScreenProps> = ({
                             isDropping={
                               currentPiece?.isDropping && (cell !== null || isCurrentPiece)
                             }
-                            className="w-6 h-6"
+                            className='w-6 h-6'
                           />
                         )
                       })}
                     </div>
-                  </React.Fragment>
+                  </Fragment>
                 ))}
               </div>
 
               {/* オーバーレイ（ゲームオーバー / ポーズ時） */}
               {(isGameOver || isPaused) && (
-                <div className="absolute inset-0 flex items-center justify-center bg-[#282a36]/80 backdrop-blur-sm rounded-lg">
-                  <div className="text-center p-8 bg-[#282a36]/90 rounded-xl border border-[#50fa7b]/30 shadow-lg">
-                    <p className="text-4xl font-bold text-[#50fa7b] mb-6">
+                <div className='absolute inset-0 flex items-center justify-center bg-[#282a36]/80 backdrop-blur-sm rounded-lg'>
+                  <div className='text-center p-8 bg-[#282a36]/90 rounded-xl border border-[#50fa7b]/30 shadow-lg'>
+                    <p className='text-4xl font-bold text-[#50fa7b] mb-6'>
                       {isGameOver ? 'GAME OVER' : 'PAUSED'}
                     </p>
                     <button
                       onClick={initGame}
-                      className="px-8 py-3 bg-[#50fa7b] text-[#282a36] rounded-lg hover:bg-[#8be9fd] transition-all transform hover:scale-105 shadow-lg"
+                      className='px-8 py-3 bg-[#50fa7b] text-[#282a36] rounded-lg hover:bg-[#8be9fd] transition-all transform hover:scale-105 shadow-lg'
                     >
                       {isGameOver ? 'Try Again' : 'Resume'}
                     </button>
@@ -151,13 +152,13 @@ export const GameScreen: React.FC<GameScreenProps> = ({
             </div>
 
             {/* サイドパネル */}
-            <div className="flex-1 space-y-3 text-sm">
+            <div className='flex-1 space-y-3 text-sm'>
               <ScoreBoard score={score} level={level} linesCleared={linesCleared} />
               <NextPiecePreview piece={nextPiece} />
               <ControlsInfo />
               <button
                 onClick={togglePause}
-                className="w-full px-3 py-1.5 bg-[#44475a] text-[#8be9fd] rounded-lg border border-[#6272a4]/30 hover:bg-[#6272a4] transition-all"
+                className='w-full px-3 py-1.5 bg-[#44475a] text-[#8be9fd] rounded-lg border border-[#6272a4]/30 hover:bg-[#6272a4] transition-all'
               >
                 {isPaused ? 'Resume (P)' : 'Pause (P)'}
               </button>

@@ -1,5 +1,5 @@
-import { NavLinkProps } from './types'
 import Link from 'next/link'
+import type { NavLinkProps } from './types'
 
 export const NavLink = ({ path, label, isActive }: NavLinkProps) => {
   const isContactMe = path === '/contact-me'

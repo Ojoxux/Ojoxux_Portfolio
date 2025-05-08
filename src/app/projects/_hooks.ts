@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { projectContentMapping, projectFiles } from '@/utils/constants/projects'
+import { getCurrentProjectName, isDemoFile, isImageFile } from '@/utils/editor/fileUtils'
 import { highlightCode } from '@/utils/shiki'
-import { isDemoFile, isImageFile, getCurrentProjectName } from '@/utils/editor/fileUtils'
-import { projectFiles, projectContentMapping } from '@/utils/constants/projects'
+import { useEffect, useState } from 'react'
 
 export const useProjectsPage = (currentFile: string | null) => {
   const [highlightedHtml, setHighlightedHtml] = useState<string>('')

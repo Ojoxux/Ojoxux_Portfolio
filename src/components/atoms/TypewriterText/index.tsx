@@ -1,7 +1,7 @@
 'use client'
 
 import { useTypewriter } from '@/hooks/useTypewriter'
-import { TypewriterTextProps } from './types'
+import type { TypewriterTextProps } from './types'
 
 export const TypewriterText = ({
   text,
@@ -21,7 +21,7 @@ export const TypewriterText = ({
   return (
     <span className={className} style={{ whiteSpace: 'pre' }}>
       {displayText}
-      {(showCursor || isTyping) && <span className="animate-cursor-blink">_</span>}
+      {(showCursor || isTyping) && <span className='animate-cursor-blink'>_</span>}
     </span>
   )
 }
