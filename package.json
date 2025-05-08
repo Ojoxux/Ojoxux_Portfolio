@@ -6,7 +6,9 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "biome check src --write --unsafe",
+    "format": "biome format src --write",
+    "check": "biome check src --write",
     "remove-unused": "ts-remove-unused-imports src"
   },
   "dependencies": {
@@ -23,15 +25,11 @@
     "use-sound": "^4.0.3"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3",
+    "@biomejs/biome": "1.9.4",
     "@types/node": "^20.17.16",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
-    "eslint": "^9.19.0",
-    "eslint-config-next": "^15.1.6",
-    "eslint-config-prettier": "^10.0.1",
     "postcss": "^8",
-    "prettier": "^3.4.2",
     "tailwindcss": "^3.4.1",
     "ts-remove-unused-imports": "^1.0.2",
     "typescript": "^5"
