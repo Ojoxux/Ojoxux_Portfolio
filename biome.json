@@ -38,6 +38,7 @@
   "javascript": {
     "formatter": {
       "quoteStyle": "single",
+      "jsxQuoteStyle": "single",
       "trailingCommas": "es5",
       "semicolons": "asNeeded",
       "arrowParentheses": "asNeeded"
