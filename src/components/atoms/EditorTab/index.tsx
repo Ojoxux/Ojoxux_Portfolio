@@ -27,12 +27,15 @@ export const EditorTab: React.FC<EditorTabProps> = ({
           alt="Ojx Logo"
         />
       ) : (
-        <span className="text-[#ff79c6]">{extension}</span>
+        <span className="text-[#ff79c6] flex-shrink-0">{extension}</span>
       )}
-      <span className="text-xs">{fileName}</span>
+      <span className="text-xs whitespace-nowrap">{fileName}</span>
       <button
-        onClick={onClose}
-        className="opacity-0 group-hover:opacity-100 hover:text-[#ff5555] transition-opacity"
+        onClick={e => {
+          e.stopPropagation()
+          onClose(e)
+        }}
+        className="opacity-0 group-hover:opacity-100 hover:text-[#ff5555] transition-opacity flex-shrink-0"
       >
         ×
       </button>
