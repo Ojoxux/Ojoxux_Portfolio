@@ -6,7 +6,7 @@ export async function highlightCode(code: string, lang: string): Promise<string>
   if (!highlighter) {
     highlighter = await shiki.createHighlighter({
       themes: ['dracula'],
-      langs: ['javascript', 'typescript', 'jsx', 'tsx', 'json'],
+      langs: ['javascript', 'typescript', 'jsx', 'tsx', 'json', 'markdown'],
     })
   }
 
