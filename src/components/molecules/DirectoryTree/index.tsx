@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { DirectoryTreeProps, FileStructure } from './types'
-import { fileStructure } from '@/utils/constants/files'
 import { SvgIcon } from '@/components/atoms/SvgIcon'
 
 const getAllDirectoryPaths = (items: FileStructure[]): string[] => {
@@ -17,13 +16,14 @@ const getAllDirectoryPaths = (items: FileStructure[]): string[] => {
   return paths
 }
 
-const initialExpandedPaths = getAllDirectoryPaths(fileStructure)
-
 export const DirectoryTree: React.FC<DirectoryTreeProps> = ({
   className = '',
   currentFile,
   onFileSelect,
+  rootDirectory,
+  fileStructure,
 }) => {
+  const initialExpandedPaths = getAllDirectoryPaths(fileStructure)
   const [expandedDirs, setExpandedDirs] = useState<Set<string>>(new Set(initialExpandedPaths))
 
   const toggleDir = (path: string) => {
@@ -35,6 +35,45 @@ export const DirectoryTree: React.FC<DirectoryTreeProps> = ({
     }
     setExpandedDirs(newExpanded)
   }
+
+  const getFilteredFileStructure = (): FileStructure[] => {
+    if (!rootDirectory) {
+      return fileStructure
+    }
+
+    const findNodeByPath = (items: FileStructure[], path: string): FileStructure | null => {
+      for (const item of items) {
+        if (item.path === path) {
+          return item
+        }
+
+        if (item.children && item.children.length > 0) {
+          const foundInChildren = findNodeByPath(item.children, path)
+          if (foundInChildren) {
+            return foundInChildren
+          }
+        }
+      }
+
+      return null
+    }
+
+    const rootNode = findNodeByPath(fileStructure, rootDirectory)
+
+    if (rootNode) {
+      return [
+        {
+          ...rootNode,
+          path: '/',
+          name: rootNode.name,
+        },
+      ]
+    }
+
+    return fileStructure
+  }
+
+  const filteredFileStructure = getFilteredFileStructure()
 
   const renderItem = (item: FileStructure, level: number = 0) => {
     const isExpanded = expandedDirs.has(item.path)
@@ -102,7 +141,7 @@ export const DirectoryTree: React.FC<DirectoryTreeProps> = ({
         EXPLORER
       </div>
       {/* ディレクトリ構造 */}
-      <div className="p-2 text-sm">{fileStructure.map(item => renderItem(item))}</div>
+      <div className="p-2 text-sm">{filteredFileStructure.map(item => renderItem(item))}</div>
     </div>
   )
 }
