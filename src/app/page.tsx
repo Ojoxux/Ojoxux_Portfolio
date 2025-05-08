@@ -1,8 +1,12 @@
+'use client'
+
+import { useRedirectIfNotDesktop } from '@/hooks/useRedirectIfNotDesktop'
 import { EditorLayout } from '@/components/templates/EditorLayout'
 import { HomeHero } from '@/components/organisms/HomeHero'
 import { TetrisGame } from '@/components/molecules/TetrisGame'
 
 export default function Home() {
+  useRedirectIfNotDesktop()
   return (
     <EditorLayout>
       <div className="grid grid-cols-2 gap-32 min-h-screen">
