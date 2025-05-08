@@ -1,33 +1,27 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { EditorLayout } from '@/components/templates/EditorLayout'
 import { ActivityBar } from '@/components/molecules/ActivityBar'
 import { EditorTitleBar } from '@/components/molecules/EditorTitleBar'
 import { EditorContent } from '@/components/molecules/EditorContent'
 import { LineNumber } from '@/components/atoms/LineNumber'
 import { StatusBar } from '@/components/molecules/StatusBar'
-import { highlightCode } from '@/utils/shiki'
 import { motion, AnimatePresence } from 'framer-motion'
-import {
-  projectFiles,
-  projectsFileStructure,
-  projectContentMapping,
-} from '@/utils/constants/projects'
+import { projectsFileStructure } from '@/utils/constants/projects'
 import { EditorTabs } from '@/components/molecules/EditorTabs'
 import { DirectoryTree } from '@/components/molecules/DirectoryTree'
-import { isImageFile, isDemoFile, getCurrentProjectName } from '@/utils/editor/fileUtils'
+import { isImageFile, isDemoFile } from '@/utils/editor/fileUtils'
 import { useEditorTabs } from '@/utils/editor/useEditorTabs'
-import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { useRedirectIfNotDesktop } from '@/hooks/useRedirectIfNotDesktop'
+import { useProjectsPage } from './_hooks'
 
 export default function ProjectsPage() {
   useRedirectIfNotDesktop()
-  // タブ管理は共通フックで
+
   const { openFiles, currentFile, setCurrentFile, handleFileSelect, handleCloseFile } =
     useEditorTabs('/teamind/teamind.ojx')
 
-  // ProjectsPage のロジックはカスタムフックスに移行
   const { highlightedHtml, lineCount, prefersReducedMotion, projectName } =
     useProjectsPage(currentFile)
 
@@ -141,48 +135,4 @@ export default function ProjectsPage() {
       </div>
     </EditorLayout>
   )
-}
-
-// ProjectsPage のロジック抽出したカスタムフックス
-export const useProjectsPage = (currentFile: string | null) => {
-  const [highlightedHtml, setHighlightedHtml] = useState<string>('')
-  const [lineCount, setLineCount] = useState<number>(0)
-  const prefersReducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)')
-
-  // プロジェクト名取得
-  const projectName = getCurrentProjectName(currentFile)
-
-  // コードハイライト
-  // MEMO: できればuseEffectを使いたくないが、Shikiのハイライトがうまくいかないため、useEffectを使っている
-  useEffect(() => {
-    if (currentFile) {
-      if (!isDemoFile(currentFile) && !isImageFile(currentFile)) {
-        const mappedPath = projectContentMapping[currentFile]
-        const content = mappedPath ? projectFiles[mappedPath] : null
-        if (content) {
-          const loadShiki = async () => {
-            try {
-              const html = await highlightCode(content.content, content.language)
-              setHighlightedHtml(html)
-              setLineCount(content.content.split('\n').length)
-            } catch {
-              setHighlightedHtml(`<pre><code>${content.content}</code></pre>`)
-              setLineCount(content.content.split('\n').length)
-            }
-          }
-          loadShiki()
-        }
-      } else {
-        // Reset when currentFile is a demo or image file
-        setHighlightedHtml('')
-        setLineCount(0)
-      }
-    } else {
-      // Reset when currentFile is null
-      setHighlightedHtml('')
-      setLineCount(0)
-    }
-  }, [currentFile])
-
-  return { highlightedHtml, lineCount, prefersReducedMotion, projectName }
 }
