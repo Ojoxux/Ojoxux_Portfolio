@@ -9,17 +9,19 @@ export const EditorContent: React.FC<EditorContentProps> = ({ highlightedHtml })
   }
 
   return (
-    <div className="flex-1 relative">
+    <div className="flex-1 pl-4">
       {/* インデントガイド (必要であれば残す) */}
       {/* <div className="absolute top-0 left-0 h-full w-px bg-[#44475a]/30" style={{ left: '16px' }} /> */}
       {/* <div className="absolute top-0 left-0 h-full w-px bg-[#44475a]/30" style={{ left: '32px' }} /> */}
 
       {/* Shikiが生成したHTMLを表示 */}
       {/* Shikiの出力には通常<pre>が含まれるので、ここでは<pre>を削除 */}
-      <div
-        className="text-sm leading-6 text-[#f8f8f2]"
-        dangerouslySetInnerHTML={{ __html: highlightedHtml }}
-      />
+      <div className="w-[900px] max-w-full">
+        <div
+          className="text-sm leading-6 text-[#f8f8f2]"
+          dangerouslySetInnerHTML={{ __html: highlightedHtml }}
+        />
+      </div>
     </div>
   )
 }
