@@ -47,7 +47,7 @@ export const AboutMeContent: React.FC<AboutMeContentProps> = ({
   if (!fileContent) return null
 
   return (
-    <div className='h-full flex flex-col'>
+    <div className='h-full flex flex-col -ml-1'>
       <EditorTabs
         openFiles={openFiles}
         currentFile={currentFile}
@@ -62,7 +62,7 @@ export const AboutMeContent: React.FC<AboutMeContentProps> = ({
           ))}
         </div>
 
-        <div className='flex-1 pl-4'>
+        <div className='flex-1'>
           <EditorContent highlightedHtml={highlightedHtml} />
         </div>
       </div>
