@@ -1,0 +1,68 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+<!-- cursor-quick-rule.mdc -->
+---
+description: Rules for TypeScript, component structure, Next.js, styling, and Atomic Design (templates only)
+alwaysApply: true
+---
+
+# Cursor Rules
+
+## TypeScript
+
+### General Guidelines
+
+* **Enable compiler safety:** Project must compile with `strict`, `noImplicitAny`, `exactOptionalPropertyTypes`, and `noUncheckedIndexedAccess`.
+* **Prefer `type` over `interface`:** Use `type` aliases for most structures; reserve `interface` for declaration merging or public React component props.
+* **Avoid `any`:** Reach for generics, union types, or `unknown` with proper narrowing instead of `any`.
+* **Explicit return types:** All exported functions must declare their return type explicitly.
+* **Readonly & immutability:** Declare arrays and objects as `readonly` where mutation is not required; use `as const` for literal objects.
+* **Named exports:** Use named exports for all utilities and hooks. A default export is only allowed when the file exports a single React component whose filename matches the component name.
+* **Small, single‑purpose functions:** Keep functions focused and ≤ 20 LOC where possible.
+* **ESLint & Prettier:** Follow the shared ESLint config (`@cursor/eslint-config`); formatting is enforced via Prettier.
+
+### Functional Programming Essentials
+
+* **Prefer immutability:** Use `const`, `readonly`, and `Readonly<T>`; never mutate function arguments or shared objects. Favor non‑destructive array methods (`map`, `filter`, `reduce`, `slice`) over their mutating counterparts.
+* **Pure functions by default:** A function should be deterministic and side‑effect‑free. Accept input, return new data; avoid reading from or writing to external state.
+* **Composition over imperative flow:** Build behaviour by composing small functions with `pipe`, `flow`, or straightforward nested calls instead of imperative control Flow.
+* **Algebraic Data Types & exhaustive handling:** Model state with discriminated unions (e.g. `Loading | Loaded | Error`). Use exhaustive checks or pattern‑matching helpers such as [`ts-pattern`](https://github.com/gvergnaud/ts-pattern) to ensure all variants are handled.
+* **Explicit nullability:** Represent "no value" with `Option<T>` (e.g. from [`fp-ts`](https://github.com/gcanti/fp-ts)) rather than `null`/`undefined`; never use the non‑null assertion operator (`!`).
+* **Functional error handling:** Use `Either<E, A>` or `Result` types to represent recoverable errors. Transform thrown exceptions into explicit values with helpers like `tryCatch` from `fp-ts/TaskEither`.
+* **Higher‑order utilities:** Leverage functional helpers like `map`, `flatMap` (`chain`), `sequence`, and `traverse` from `fp-ts` when working with `Option`, `Either`, or `TaskEither` collections.
+* **Currying & partial application:** Write data‑last, curried functions when it improves composability or readability. Prefer `pipe` and `flow` to thread data through operations.
+* **Generics over overloads:** Express polymorphic behaviour with type parameters rather than multiple overload signatures.
+* **Isolate side‑effects:** Encapsulate I/O, logging, or other effects inside dedicated modules; keep your core domain logic pure and easily testable.
+* **Simplify types:** Use tools like [`simplify-typescript`](https://github.com/sebastienrousseau/simplify-typescript) or utilities like `Simplify<T>` (from `type-fest` or `type-plus`) to flatten overly nested or inferred types for better readability and DX.
+
+> Other sections (Component Structure, React/Next.js, Styling & UI) remain unchanged and can be referenced from the previous version of the document.
+
+
+# Component Structure
+- Each component lives in a `PascalCase/` directory.
+  - Main file: `index.tsx`
+  - Type file: `type.ts`
+- Component-specific logic (e.g. `useHogeHoge`) **must be written at the bottom of `index.tsx`**.
+- Export components using named exports only.
+
+# Atomic Design (App Router Edition)
+- Use the following hierarchy only:  
+  `atoms/ → molecules/ → organisms/ → templates/`
+- Do **not** include `pages/` in the design layer; App Router handles routing.
+- Lower-level components must not import from higher-level directories.
+- Build small, reusable units and isolate logic appropriately.
+
+# Next.js (App Router)
+- Prefer **Server Components**. Use `"use client"` only with justification.
+- Each page must export a `metadata` object with `title`, `description`, and `og:image`.
+- Use `generateStaticParams()` for static generation when applicable.
+- Forms must use `react-hook-form` + `zod`, and return validation results via `useActionState`.
+
+# Styling & UI
+- Use **Tailwind CSS** only. Arbitrary values are disallowed.
+- Tokens for color, spacing, etc., must be defined in `tailwind.config.ts`.
+- Use **Magic UI** for interactions, but support `prefers-reduced-motion`.
+- Apply mobile-first responsive design principles.
