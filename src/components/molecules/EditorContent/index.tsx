@@ -9,7 +9,7 @@ export const EditorContent: React.FC<EditorContentProps> = ({ highlightedHtml })
   }
 
   return (
-    <div className='flex-1 pl-4'>
+    <div className='flex-1'>
       {/* インデントガイド (必要であれば残す) */}
       {/* <div className="absolute top-0 left-0 h-full w-px bg-[#44475a]/30" style={{ left: '16px' }} /> */}
       {/* <div className="absolute top-0 left-0 h-full w-px bg-[#44475a]/30" style={{ left: '32px' }} /> */}
