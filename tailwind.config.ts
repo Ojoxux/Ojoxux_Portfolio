@@ -20,7 +20,7 @@ export default {
           'sans-serif',
         ],
         'sf-pro': ['var(--font-sf-pro)', 'sans-serif'],
-        'apple-garamond': ['var(--font-instrument-serif)', 'serif'],
+        'instrument-serif': ['var(--font-instrument-serif)', 'serif'],
       },
       colors: {
         primary: colors.primary,
