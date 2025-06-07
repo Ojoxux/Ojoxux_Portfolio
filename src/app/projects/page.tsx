@@ -26,7 +26,7 @@ export default function ProjectsPage() {
 
   return (
     <EditorLayout>
-      <div className='min-h-[calc(100vh-48px)] w-full pt-3 flex justify-center bg-[#282a36]'>
+      <div className='min-h-[calc(100vh-48px)] w-full pt-3 flex justify-start bg-[#282a36]'>
         <div className='w-[1600px] h-[700px] bg-[#282a36] rounded-xl border border-[#6272a4]/30 shadow-2xl overflow-hidden backdrop-blur-sm'>
           <EditorTitleBar title='projects - VS Code' />
 
@@ -110,7 +110,7 @@ export default function ProjectsPage() {
                               <LineNumber key={i} number={i + 1} />
                             ))}
                           </div>
-                          <div className='flex-1 pl-4'>
+                          <div className='flex-1'>
                             <EditorContent highlightedHtml={highlightedHtml} />
                           </div>
                         </motion.div>
