@@ -9,6 +9,19 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        inter: ['var(--font-inter)', 'sans-serif'],
+        'apple-jp': [
+          'Hiragino Sans',
+          'Hiragino Kaku Gothic ProN',
+          'YuGothic',
+          'Yu Gothic',
+          'Meiryo',
+          'sans-serif',
+        ],
+        'sf-pro': ['var(--font-sf-pro)', 'sans-serif'],
+        'apple-garamond': ['var(--font-instrument-serif)', 'serif'],
+      },
       colors: {
         primary: colors.primary,
         gray: colors.gray,
@@ -25,6 +38,7 @@ export default {
         bounce: 'bounce 1s infinite',
         spin: 'spin 1s linear infinite',
         'cursor-blink': 'blink 1s step-end infinite',
+        'text-reveal': 'textReveal 1.5s ease forwards',
       },
       keyframes: {
         fadeIn: {
@@ -44,6 +58,10 @@ export default {
         blink: {
           '0%, 100%': { opacity: '1' },
           '50%': { opacity: '0' },
+        },
+        textReveal: {
+          '0%': { color: 'rgb(71, 85, 105)' },
+          '100%': { color: 'rgb(255, 255, 255)' },
         },
       },
     },
